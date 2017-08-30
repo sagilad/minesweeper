@@ -30,6 +30,8 @@
 				$scope.clickCell = function(minefield, cell){
 								
 					if (window.event.shiftKey == true){
+						if (!cell.isCovered)
+							return;						
 						if (cell.flag == true){
 							cell.flag = false;	
 							$scope.flags_cnt = this.flags_cnt +1;
