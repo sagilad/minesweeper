@@ -13,7 +13,8 @@ Test# | Description | Steps | Expected result
 4 | Add a flag | Start the game (choose x amount of mines), then shift + click on a cell  | a flag will be shown on the cell, and the number of the remaining flags will be decresed by one 
 5 | Remove a flag | shift + click on a cell with a flag on it  | the flag will be removed from the cell, and the number of the remaining flags will be increased by one
 6 | Click on a flag | click on a cell with a flag on it  | the flag will remain and the cell will stay covered
-7 | No more flags | start a game, then keep placing flags (shift + click) until you don't have any more remaing flags, then place another one | an alert message will pop up saying "you don't have any more flags" and no flag will be placed
-8 | Start a new game during existing one | Start a game and play, then select height, width and nubmers of mines and restart a game  | The game will restart with new selected values and all messages will disappear 
-9 | Superman | start a game and check/uncheck the Superman Checkbox  | all cells will be reveald/covered
-10 | Wining | start a game, keep revealing the cells and mark all the mines with flags (you can start the game with 1 mine to make it easy)  | when all mines are flagged correctly, "you win" text will appear
+7 | Click on a revealed cell | click on a revealed cell | the cell will stay revealed and no flag will be placed
+8 | No more flags | start a game, then keep placing flags (shift + click) until you don't have any more remaing flags, then place another one | an alert message will pop up saying "you don't have any more flags" and no flag will be placed
+9 | Start a new game during existing one | Start a game and play, then select height, width and nubmers of mines and restart a game  | The game will restart with new selected values and all messages will disappear 
+10 | Superman | start a game and check/uncheck the Superman Checkbox  | all cells will be reveald/covered
+11 | Wining | start a game, keep revealing the cells and mark all the mines with flags (you can start the game with 1 mine to make it easy)  | when all mines are flagged correctly, "you win" text will appear
