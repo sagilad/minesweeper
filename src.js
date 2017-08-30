@@ -29,7 +29,7 @@
 				
 				$scope.clickCell = function(minefield, cell){
 								
-					if (window.event.ctrlKey == true){
+					if (window.event.shiftKey == true){
 						if (cell.flag == true){
 							cell.flag = false;	
 							$scope.flags_cnt = this.flags_cnt +1;
