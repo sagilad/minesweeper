@@ -43,6 +43,7 @@
 						}						
 						cell.flag = true;
 						$scope.flags_cnt = this.flags_cnt -1;
+						// each flag that is placed, check if won
 						if(youWon($scope.minefield)){
 							$scope.youWonMessage = true;
 							return;
@@ -113,16 +114,16 @@
 		function calculateNumber(minefield, row, column, width, height) {
 			var thisCell = getCell(minefield, row, column);
 			
-			// if this cell contains a mine then we can't place a number here
+			// if it is a mine cell - don't calculate a number
 			if(thisCell.content == "mine") {
 				return;
 			}
 			
 			var mineCount = 0;
 
-			// check row above if this is not the first row
+			// if this is not the first row
 			if(row > 0) {
-				// check column to the left if this is not the first column
+				// if this is not the first column
 				if(column > 0) {
 					// get the cell above and to the left
 					var cell = getCell(minefield, row - 1, column - 1);
@@ -137,7 +138,7 @@
 					mineCount++;
 				}
 
-				// check column to the right if this is not the last column
+				// if this is not the last column
 				if(column < (width-1)) {
 					// get the cell above and to the right
 					var cell = getCell(minefield, row - 1, column + 1);
@@ -147,7 +148,7 @@
 				}
 			}
 
-			// check column to the left if this is not the first column
+			// if this is not the first column
 			if(column > 0) {
 				// get the cell to the left
 				var cell = getCell(minefield, row, column - 1);
@@ -156,7 +157,7 @@
 				}
 			}
 			
-			// check column to the right if this is not the last column
+			// if this is not the last column
 			if(column < (width-1)) {
 				// get the cell to the right
 				var cell = getCell(minefield, row, column + 1);
@@ -165,9 +166,9 @@
 				}
 			}
 
-			// check row below if this is not the last row
+			// if this is not the last row
 			if(row < (height-1)) {
-				// check column to the left if this is not the first column
+				// if this is not the first column
 				if(column > 0) {
 					// get the cell below and to the left
 					var cell = getCell(minefield, row + 1, column - 1);
@@ -182,7 +183,7 @@
 					mineCount++;
 				}
 
-				// check column to the right if this is not the last column
+				// if this is not the last column
 				if(column < (width-1)) {
 					// get the cell below and to the right
 					var cell = getCell(minefield, row + 1, column + 1);
@@ -208,16 +209,18 @@
 			revealCell(i + 1, j, minefield, width, height);
 			revealCell(i + 1, j + 1, minefield, width, height);
 		  }
-
+		
+		  // if it first/last row/column - stop revealing
 		  function revealCell(i, j, minefield, width, height) {
 			if (i < 0 || j < 0 || i >=width || j>=height )
 			  return;
 			
-			
+			// if it the cell is covered or a mine - stop revealing
 			if (!minefield.rows[i].cells[j].isCovered || minefield.rows[i].cells[j].content == "mine")
 				return;
 			
 			minefield.rows[i].cells[j].isCovered = false;
+			        // if the cell is empty (no cells around it) reveal all cells around it and and all cells around any adjacent empty cell 
 				if (minefield.rows[i].cells[j].content == "empty") {
 				  revealAdjacentCells(i, j, minefield, width, height);
 				}
@@ -227,6 +230,7 @@
 			for(var y = 0; y < 9; y++) {
 				for(var x = 0; x < 9; x++) {
 					var cell = getCell(minefield, y, x);
+					// if there are still mines that are covered without a flag - you didn't win
 					if((cell.isCovered && cell.content != "mine") || (!cell.flag && cell.isCovered)) {
 						return false;
 					}
