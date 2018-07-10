@@ -1,5 +1,5 @@
 # minesweeper
-minesweeper for wix
+minesweeper
 
 run it on: http://rawgit.com/sagilad/minesweeper/master/index.html
 
